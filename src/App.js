@@ -1,78 +1,36 @@
-/* eslint-disable jsx-a11y/aria-props */
-/* eslint-disable jsx-a11y/no-redundant-roles */
-/* eslint-disable react/jsx-no-comment-textnodes */
+import React from "react";
+import Form from "./components/Form";
+import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
 
-
-
-function App() {
-  const tasklist = this.props.tasks?.map(task => 
-    (
-      <Todo 
+function App(props) {
+  const taskList = props.tasks.map(task => (
+    <Todo
         id={task.id}
-        name={task.name} 
+        name={task.name}
         completed={task.completed}
-        key={task.id} 
-        />)
-    );
+        key={task.id}
+      />
+    )
+  );
   return (
-     <div className="todoapp stcak-large">
-      <h1>Todo Routine</h1>
-      <form>
-          <h2 className="label-wrapper">
-            <label htmlFor="new-todo-input" className="label__lg">
-              What need to be done ?
-            </label>
-          </h2>
-          <input 
-             type='text'
-             id="new-todo-input"
-             className="input input__lg"
-             name="text"
-             autoComplete="off"
-          />
-          <button type="submit" className="btn btn__primary btn__lg">
-            Add
-          </button>
-      </form>
-
+    <div className="todoapp stack-large">
+      <h1>TodoMatic</h1>
+      <Form />
       <div className="filters btn-group stack-exception">
-        <button type="button" className="btn toggle-btn" aria-pressed='true'>
-          <span className="visualy-hidden">
-            Show
-          </span>
-          <span>all</span>
-          <span className="visualy-hidden">
-            tasks
-          </span>
-        </button>
-
-        <button type="button" className="btn toggle-btn" aria-pressed="false">
-          <span className="visually-hidden">Show </span>
-          <span>Active</span>
-          <span className="visually-hidden"> tasks</span>
-        </button>
-
-        <button type="button" className="btn toggle-btn" aria-pressed="false">
-          <span className="visually-hidden">Show </span>
-          <span>Completed</span>
-          <span className="visually-hidden"> tasks</span>
-        </button>
+        <FilterButton />
+        <FilterButton />
+        <FilterButton />
       </div>
-
-      <h2 id="list-heading">
-        3 tasks remaining 
-      </h2>
-
-      // eslint-disable-next-line jsx-a11y/no-redundant-roles
+      <h2 id="list-heading">3 tasks remaining</h2>
       <ul
-         role='list'
-         className='todo-list stack-large stack-exception'
-         aria-labelledlby="list-heading"
+        role="list"
+        className="todo-list stack-large stack-exception"
+        aria-labelledby="list-heading"
       >
-          {tasklist}
+        {taskList}
       </ul>
-     </div> 
+    </div>
   );
 }
 
