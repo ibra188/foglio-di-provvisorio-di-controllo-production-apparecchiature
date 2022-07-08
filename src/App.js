@@ -1,36 +1,23 @@
 import React from "react";
-import Form from "./components/Form";
-import FilterButton from "./components/FilterButton";
-import Todo from "./components/Todo";
+import "./index.css";
+import About from "./components/About";
+import Home from "./components/Home";
+import Contact from "./components/Contact";
 
-function App(props) {
-  const taskList = props.tasks.map(task => (
-    <Todo
-        id={task.id}
-        name={task.name}
-        completed={task.completed}
-        key={task.id}
-      />
-    )
-  );
-  return (
-    <div className="todoapp stack-large">
-      <h1>TodoMatic</h1>
-      <Form />
-      <div className="filters btn-group stack-exception">
-        <FilterButton />
-        <FilterButton />
-        <FilterButton />
-      </div>
-      <h2 id="list-heading">3 tasks remaining</h2>
-      <ul
-        role="list"
-        className="todo-list stack-large stack-exception"
-        aria-labelledby="list-heading"
-      >
-        {taskList}
-      </ul>
-    </div>
+import { BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
+function App() {
+  return(
+    <BrowserRouter>
+       <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+       </Routes>
+    </BrowserRouter>
   );
 }
 
